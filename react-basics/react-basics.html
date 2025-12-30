@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <!-- react is an external library and it also helps us create website easily-->
+    <div class="js-container"></div>
+
+    <script src="react-library/react.js"></script>
+    <script src="react-library/react-dom.js"></script>
+
+    <script src="react-library/babel.js"></script>
+    <script type="text/babel">
+      const button = <button>submit</button>;
+      const paragraph = <p>itid of text</p>;
+      const div = (
+        <div>
+          <button>submit</button>
+          <p>itid of text</p>
+        </div>
+      );
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(div);
+    </script>
+  </body>
+</html>
