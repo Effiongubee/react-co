@@ -1,17 +1,20 @@
 import "./OrdersPage.css";
 import axios from "axios";
 import dayjs from "dayjs";
-import { formatMoney } from "../utils/money";
-import { useState, useEffect, fragment } from "react";
-import { Header } from "../components/Header";
+import { formatMoney } from "../../utils/money";
+import { useState, useEffect, Fragment } from "react";
+import { Header } from "../../components/Header";
 
 export function OrdersPage({ cart }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    axios.get("/api/orders?expand=products").then((response) => {
+    const fetchOrderPageData = async () => {
+      const response = await axios.get("/api/orders?expand=products");
       setOrders(response.data);
-    });
+    };
+    fetchOrderPageData();
   }, []);
+
   return (
     <>
       <title>Orders</title>
@@ -46,7 +49,7 @@ export function OrdersPage({ cart }) {
                 <div className="order-details-grid">
                   {order.products.map((orderProduct) => {
                     return (
-                      <fragment key={orderProduct.product.id}>
+                      <Fragment key={orderProduct.product.id}>
                         <div className="product-image-container">
                           <img src={orderProduct.product.image} />
                         </div>
@@ -82,7 +85,7 @@ export function OrdersPage({ cart }) {
                             </button>
                           </a>
                         </div>
-                      </fragment>
+                      </Fragment>
                     );
                   })}
                 </div>
